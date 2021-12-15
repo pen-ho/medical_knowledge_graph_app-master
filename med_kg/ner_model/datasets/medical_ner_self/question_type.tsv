@@ -1,0 +1,92 @@
+# 1.disease_symptom
+[disease]会有什么症状？
+[disease]会有什么样的表现？
+# 2.symptom_disease
+出现[symptom]是什么毛病？
+#出现[symptom]、[symptom]是什么毛病？
+#出现[symptom]、[symptom]、[symptom]是什么毛病？
+#出现[symptom]、[symptom]、[symptom]、[symptom]是什么毛病？
+经常[symptom]是什么毛病？
+#经常[symptom]、[symptom]是什么毛病？
+#经常[symptom]、[symptom]、[symptom]是什么毛病？
+#经常[symptom]、[symptom]、[symptom]、[symptom]是什么毛病？
+# 3.disease_cause
+为什么会得[disease]?
+为啥会得[disease]?
+怎么会[disease]?
+得了[disease]的原因是？
+得了[disease]是因为什么？
+# 4.disease_acompany
+[disease]会有什么并发症？
+[disease]会跟一并出现？
+[disease]会跟什么病一起出现？
+# 5.disease_not_food
+这个[disease]不应该吃什么？
+这个[disease]不应该吃什么食物？
+这个[disease]最好不吃什么？
+这个[disease]不宜吃什么？
+#这个[disease]可以吃[food]吗？
+# 6.disease_do_food
+这个[disease]应该吃什么？
+这个[disease]应该吃什么食物？
+这个[disease]最好吃点什么？
+这个[disease]宜吃什么？
+# 7.food_not_disease
+这个[food]对什么病不好？
+得了什么病，这个[food]不能吃？
+# 8.food_do_disease
+这个[food]对什么病好？
+得了什么病，要吃这个[food]？
+# 9.disease_drug
+得了这个[disease]，要吃什么药？
+[disease]要吃什么药？
+要吃什么药，[disease]了？
+# 10.drug_disease
+这个[drug]对什么疾病好？
+[drug]可以治疗什么疾病？
+这个[drug]能治疗什么疾病？
+[drug]可以治疗什么疾病？
+这个[drug]能治疗[disease]吗？
+# 11.disease_check
+[disease]应该做什么检查项目？
+[disease]需要做什么检查？
+# 12.check_disease
+[check]能检查出什么疾病？
+[check]能检查出什么？
+[check]能测出什么？
+# 13.disease_prevent
+[disease]要做什么预防？
+怎么预防[disease]？
+[disease]的预防包括什么？
+做什么可以预防[disease]?
+如何避免[disease]?
+如何防范[disease]?
+怎样避开[disease]?
+怎样才可以不[disease]?
+# 14.disease_lasttime
+[disease]的周期有多久？
+# 15.disease_cureway
+这个[disease]如何治疗？
+这个[disease]怎么医治？
+这个[disease]的治疗方式是？
+# 16.disease_cureprob
+[disease]的治愈概率有多少？
+多大概率能治好[disease]？
+治好[disease]希望大吗？
+# 17.disease_easyget
+哪些人容易得[disease]
+[disease]的易感人群是？
+哪些人容易感染[disease]
+# 18.disease_desc
+可以给我们介绍一下[disease]这个病吗？
+[disease]这个病的简介有吗？
+# 是否类问题
+#吃这个[drug]，对[disease]引起的[symptom]好吗？
+#吃这个[drug]，对[disease]引起的[symptom]有帮助吗？
+#最近感觉[symptom],是得了什么病？
+# 多实体
+#吃什么药可以缓解[disease]引发的[symptom]?
+#最近得了[disease]，经常[symptom],应该吃点什么药？
+#最近得了[disease]，经常[symptom],[symptom]应该吃点什么药？
+#最近得了[disease]，经常[symptom],应该进行什么治疗？
+#最近得了[disease]，经常[symptom],[symptom]应该进行什么治疗？

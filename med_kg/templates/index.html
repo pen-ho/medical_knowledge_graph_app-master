@@ -1,0 +1,78 @@
+{% extends "navigate.html" %} {% block mainbody %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <!--overview start-->
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="page-header"><i class="fa fa-search"></i>实体识别 </h4>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="\">主页</a></li>
+                        <li><i class="fa fa-search"></i>实体识别</li>
+                    </ol>
+                </div>
+            </div>
+
+            <section class="panel panel-default">
+                <header class="panel-heading">
+                    输入文本（300字以内），识别疾病、症状、药物、检查 :
+                </header>
+                <div class="panel-body">
+                    <form action="/ner-post" method="post">
+                        <div class="form-group">
+                            {% csrf_token %}
+                            <textarea type="text" name="user_text" class="form-control" placeholder="Enter text" style="height:140px"> </textarea>
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn-primary btn-lg btn-block"> 确认</button>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </form>
+                </div>
+            </section>
+            <!--collapse start-->
+            <div class="panel-group m-bot20" id="accordion">
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            提及词识别模块(领域词典分词+BERT-CRF细颗粒度模型)-结果>>
+                        </a>
+
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            {% autoescape on %}
+                            <h5> {{ self_trained_ner }}</h5>
+                            {% endautoescape %}
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            实体链接模块-结果>>
+                        </a>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            {% autoescape off %}
+                            <h5>{{ el_result }}</h5>
+                            {% endautoescape %}
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!--collapse end-->
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,290 @@
+{% extends "navigate.html" %} {% block mainbody %}
+    <script src="/static/js/echarts.js"></script>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <!--overview start-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="page-header"><i class="icon_chat_alt"></i> 医药问答 </h3>
+                        <ol class="breadcrumb">
+                            <li><i class="fa fa-home"></i><a href="\">主页</a></li>
+                            <li><i class="icon_chat_alt"></i>医药问答</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <section class="panel panel-default">
+                    <header class="panel-heading">
+                        输入问题 :
+                    </header>
+                    <div class="panel-body">
+                        <form class="form-inline" method="get">
+                            <div class="form-row">
+                                <div class="form-group col-md-10">
+                                    <input type="text" name="question" id="question" class="form-control" placeholder="Enter text"> </input>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <button type="submit" class="btn btn-primary btn-block"> 提交</button>
+                                </div>
+                            </div>
+                            <br/><br/>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <p>
+                                        热门搜索： <a href="#" onclick="$('#question').attr('value','百日咳有什么症状？')">百日咳有什么症状？</a> &nbsp;&nbsp;
+                                        <a href="#" onclick="$('#question').attr('value','经常鼻塞、喷嚏是什么毛病？')">经常鼻塞、喷嚏是什么毛病？</a>
+                                        <a href="#" onclick="$('#question').attr('value','经常鼻黏膜肿胀是什么毛病？')">经常鼻黏膜肿胀是什么毛病？</a>
+                                        <a href="#" onclick="$('#question').attr('value','出现口苦、口干、口好渴是什么毛病？')">出现口苦、口干、口好渴是什么毛病？</a>
+                                        <a href="#" onclick="$('#question').attr('value','眼睛干涩、视野模糊是什么毛病？')">眼睛干涩、视野模糊是什么毛病？</a>
+                                        <a href="#" onclick="$('#question').attr('value','小儿感冒了，有什么食物推荐吗？')">小儿感冒了，有什么食物推荐吗？</a>
+                                        <a href="#" onclick="$('#question').attr('value','小儿感冒推荐什么药？')">小儿感冒推荐什么药？</a>
+                                        <a href="#" onclick="$('#question').attr('value','糖尿病会有什么并发症？')">糖尿病会有什么并发症？</a>&nbsp;
+                                        <a href="#" onclick="$('#question').attr('value','糖尿病有什么需要忌吃的？')">糖尿病有什么需要忌吃的？</a>
+                                        <a href="#" onclick="$('#question').attr('value','哪些人不能吃花生？')">哪些人不能吃花生？</a>&nbsp;
+                                        <a href="#" onclick="$('#question').attr('value','菜花可以治疗什么疾病？')">菜花可以治疗什么疾病？</a>
+                                        <a href="#" onclick="$('#question').attr('value','感冒灵颗粒可以治疗什么疾病？')">感冒灵颗粒可以治疗什么疾病？</a>
+                                        <a href="#" onclick="$('#question').attr('value','感冒的原因是什么？')">感冒的原因是什么？</a>
+                                        <a href="#" onclick="$('#question').attr('value','高血压要怎么治？')">高血压要怎么治？</a>
+                                        <a href="#" onclick="$('#question').attr('value','高血压要怎么预防？')">高血压要怎么预防？</a>
+                                        <a href="#" onclick="$('#question').attr('value','哪些人容易得高血压？')">哪些人容易得高血压？</a>
+                                        <a href="#" onclick="$('#question').attr('value','白血病能治好吗？')">白血病能治好吗？</a>
+                                        <a href="#" onclick="$('#question').attr('value','甲状腺结节需要做什么检查？')">甲状腺结节需要做什么检查？</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <section class="panel panel-default">
+                    <header class="panel-heading">
+                        回答 :
+                    </header>
+                    <div class="panel-body">
+                        <div class="form-group col-md-10">
+                            <div class="col-sm-10">
+                                <p id="txt" class="navbar-text">问题答案将显示在这里</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <button type="button" class="btn btn-default btn-block" data-container="body" data-toggle="popover" data-placement="top" data-content="一、描述多个症状时请用顿号分开。二、请输入您想查询的问题，可以查询的疾病涵盖内科、外科、儿科、妇产科、神经科、消化内科、血液病等多个科室领域，可以查询的内容包括但不限于临床表现、诊断依据、病因、检查方式、预防手段等。
+三、查询示例：
+1. 乳腺癌的症状有哪些？
+2. 老流鼻涕是什么毛病？
+3. 为什么有的人会失眠？
+4.失眠有哪些并发症？
+5.失眠的人不要吃啥？
+6.耳鸣了吃点啥？
+7.哪些人最好不好吃蜂蜜？
+8.板蓝根能治啥病？
+9.脑膜炎怎么才能查出来？
+10.肝病要吃啥药？
+11.鹅肉有什么好处？
+12.全血细胞计数能查出啥来？
+13.怎样才能预防肾虚？
+14.感冒要多久才能好？
+15.高血压要怎么治？
+16.白血病能治好吗？
+17.什么人容易得高血压？
+18.糖尿病是什么？
+">
+                                帮助
+                            </button>
+                        </div>
+
+
+                        <div class="form-group col-md-2">
+                            <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                纠错反馈 <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">实体识别错</a></li>
+                                <li><a href="#">意图识别错</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">其他</a></li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </section>
+
+                <div class="row">
+                    {% if ctx %}
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <header class="panel-heading">
+                                    <div class="panel-body">
+                                        <h2>暂未找到匹配答案</h2>
+                                    </div>
+                                </header>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if ret %}
+                        <div class="col-md-4">
+                            <section class="panel panel-default">
+                                <header class="panel-heading">
+                                    答案：
+                                </header>
+                                <div class="panel-body">
+                                    <table class="table" data-paging="true" data-sorting="true" data-paging-size="10"></table>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-md-8">
+                            <section class="panel panel-default">
+                                <header class="panel-heading">
+                                    图谱展示：
+                                </header>
+                                <div class="panel-body">
+                                    <div id="graph" style="width: 100%;height:600px;"></div>
+                                </div>
+                            </section>
+                        </div>
+                    {% endif %}
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+    <script src="/static/js/jquery-1.8.3.min.js"></script>
+
+    {% if ret %}
+        <script type="text/javascript">
+            var ret_dict = [{{ret|safe}}];
+
+            //将文本答案写到表单中 hzp
+            answer_txt = ret_dict[0]['answer_txt']
+
+            //将所有的答案列在tableData中
+            tableData = [];
+            for (var i = 0; i < ret_dict[0]['answer'].length; i++) {
+                answer = {};
+                answer['answer'] = ret_dict[0]['answer'][i];
+                tableData.push(answer)
+            }
+
+            jQuery(function () {
+                $('.table').footable({
+                    "columns": [{"name": "answer", title: "答案"}],
+                    "rows": tableData
+                });
+                $("#txt").text(answer_txt); //hzp add
+                $(function () {
+                    $('[data-toggle="popover"]').popover()
+                })
+            });
+
+            // echarts 数据 看echarts文档
+            var data = [];
+            var links = [];
+
+            let set = new Set();
+            for (var i = 0; i < ret_dict[0]['list'].length; i++) {
+                s = ret_dict[0]['list'][i]['source']['name'];
+                t = ret_dict[0]['list'][i]['target']['name'];
+                rel_type = ret_dict[0]['list'][i]['type'];
+
+                source_node = {};
+                if (set.has(s) == false) {
+                    set.add(s);
+                    source_node['name'] = s;
+                    source_node['draggable'] = true;   //是否允许拖拽
+                    data.push(source_node);
+                }
+
+                target_node = {};
+                if (set.has(t) == false) {
+                    set.add(t);
+                    target_node['name'] = t;
+                    target_node['draggable'] = true;   //是否允许拖拽
+                    data.push(target_node);
+                }
+
+
+                relation = {};
+                relation['source'] = s;
+                relation['target'] = t;
+                relation['value'] = rel_type;
+                relation['symbolSize'] = 10
+
+                links.push(relation);
+            }
+
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('graph'));
+
+            option = {
+                title: {
+                    text: ''
+                },
+                tooltip: {},
+                animationDurationUpdate: 1500,
+                animationEasingUpdate: 'quinticInOut',
+                label: {
+                    normal: {
+                        show: true,
+                        textStyle: {
+                            fontSize: 12
+                        },
+                    }
+                },
+                legend: {
+                    x: "center",
+                    show: false
+                },
+                series: [
+
+                    {
+                        type: 'graph',
+                        layout: 'force',
+                        symbolSize: 45,
+                        focusNodeAdjacency: true,
+                        roam: true,
+                        edgeSymbol: ['none', 'arrow'],
+                        label: {
+                            normal: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: 12,
+                                },
+                            }
+                        },
+                        force: {
+                            repulsion: 1000
+                        },
+                        edgeSymbolSize: [4, 50],
+                        edgeLabel: {
+                            normal: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: 10
+                                },
+                                formatter: "{c}"
+                            }
+                        },
+                        data: data,
+                        links: links,
+                        lineStyle: {
+                            normal: {
+                                opacity: 0.9,
+                                width: 1.3,
+                                curveness: 0,
+                                color: "#262626",
+                            }
+                        }
+                    }
+                ]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        </script>
+    {% endif %}
+
+{% endblock %}

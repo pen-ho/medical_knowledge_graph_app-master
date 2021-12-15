@@ -1,0 +1,270 @@
+{% extends "navigate.html" %} {% block mainbody %}
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+        <meta charset="utf-8"/>
+        <script src="/static/js/echarts.js"></script>
+
+    </head>
+    <title>医药实体查询</title>
+    <div class="container">
+        <div class="row">
+            <!--head start-->
+            <div class="col-md-12">
+                <h3 class="page-header"><i class="fa fa-share-alt" aria-hidden="true"></i> 医药实体查询 </h3>
+                <ol class="breadcrumb">
+                    <li><i class="fa fa-home"></i><a href="\">主页</a></li>
+                    <li><i class="fa fa-share-alt" aria-hidden="true"></i>医药实体查询</li>
+                </ol>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default ">
+                    <header class="panel-heading">
+                        查询条件：
+                    </header>
+                    <div class="panel-body">
+                        <!--搜索框-->
+                        <form method="get" id='searchEntityForm'>
+                            <div>
+                                <div class="input-group">
+                                    <input type="text" id="user_text" name="user_text" class="form-control" placeholder="输入疾病名、药物名、症状名" aria-describedby="basic-addon1">
+                                    <span class="btn btn-primary input-group-addon" type="button" id="relationSearchButton" style="background-color:#4592fe ; padding:6px 38px"
+                                          onclick="document.getElementById('searchEntityForm').submit();">查询</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+            <p>
+            <div class="col-md-12">
+                {% if ctx %}
+                    <div class="panel panel-default">
+                        <header class="panel-heading">
+                            <div class="panel-body">
+                                <h2>知识库中暂未添加该实体</h2>
+                            </div>
+                        </header>
+                    </div>
+                {% endif %}
+            </div>
+            </p>
+            <!--实体关系查询-->
+            {% if entityRelation %}
+                <!-- Echart Dom对象（实体关系） -->
+                <div class="col-md-12">
+                    <div class="panel panel-default ">
+                        <header class="panel-heading">
+                            关系图 :
+                        </header>
+                        <div class="panel-body ">
+                            <div id="graph" style="width: 90%;height:600px;"></div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if entityRelation %}
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <header class="panel-heading">
+                            关系列表 :
+                        </header>
+                        <div class="panel-body">
+                            <table class="table" data-paging="true" data-sorting="true"></table>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    {% if entityRelation %}
+        <script src="/static/js/jquery.min.js"></script>
+        <script type="text/javascript">
+            // 基于查询结果：初始化Data和Links列表，用于Echarts可视化输出
+            var ctx = [{{ ctx|safe }}];
+            //{entity2,rel}
+            var entityRelation = [{{ entityRelation|safe }}];
+
+            var data = [];
+            var links = [];
+
+            var id = 0;
+            for (var i = 0; i < entityRelation[0].length; i++) {
+                //获取node1
+                node1 = {};
+                node1['name'] = entityRelation[0][i]['source'];
+                node1['draggable'] = true;
+
+                var flag = 1;
+
+                relationTarget = id.toString();
+                for (var j = 0; j < data.length; j++) {
+                    if (data[j]['name'] == node1['name']) {
+                        flag = 0;
+                        relationTarget = data[j]['id'];
+                        break;
+                    }
+                }
+
+                node1['id'] = relationTarget;
+                if (flag == 1) {
+                    id++;
+                    data.push(node1);
+                }
+
+                //获取node2
+                node2 = {};
+                node2['name'] = entityRelation[0][i]['target'];
+                node2['draggable'] = true;
+
+                flag = 1;
+                relationTarget = id.toString();
+                for (var j = 0; j < data.length; j++) {
+                    if (data[j]['name'] == node2['name']) {
+                        flag = 0;
+                        relationTarget = data[j]['id'];
+                        break;
+                    }
+                }
+                node2['id'] = relationTarget;
+                if (flag == 1) {
+                    id++;
+                    data.push(node2);
+                }
+
+                //获取relation
+                relation = {}
+                relation['source'] = node1['id'];
+                relation['target'] = node2['id'];
+                flag = 1;
+                for (var j = 0; j < links.length; j++) {
+                    if (links[j]['source'] == relation['source'] && links[j]['target'] == relation['target']) {
+                        links[j]['value'] = links[j]['value'] + ' & ' + entityRelation[0][i]['rel_type'];
+                        flag = 0;
+                        break;
+                    }
+                }
+                if (flag == 1) {
+                    relation['value'] = entityRelation[0][i]['rel_type'];
+                    relation['symbolSize'] = 10;
+                    links.push(relation);
+                }
+
+            }
+
+
+            //基于表格的展示
+            tableData = []
+            for (var i = 0; i < entityRelation[0].length; i++) {
+                relationData = {};
+                relationData['entity1'] = entityRelation[0][i]['source'];
+                relationData['relation'] = entityRelation[0][i]['rel_type'];
+                relationData['entity2'] = entityRelation[0][i]['target'];
+
+                tableData.push(relationData);
+            }
+
+            jQuery(function () {
+                $('.table').footable({
+                    "columns": [{"name": "entity1", title: "Entity1"},
+                        {"name": "relation", title: "Relation"},
+                        {"name": "entity2", title: "Entity2"}],
+                    "rows": tableData
+                });
+            });
+            //基于表格的展示--
+
+
+            // 基于准备好的数据：Data和Links，设置Echarts参数
+            var myChart = echarts.init(document.getElementById('graph'));
+            option = {
+                title: {
+                    text: ''
+                },                //标题
+                tooltip: {},                           //提示框配置
+                animationDurationUpdate: 1500,
+                animationEasingUpdate: 'quinticInOut',
+                label: {
+                    normal: {
+                        show: true,
+                        textStyle: {
+                            fontSize: 12
+                        },
+                    }
+                },                          //节点上的标签
+                legend: {
+                    x: "center",
+                    show: false
+                },
+                series: [
+                    {
+                        type: 'graph',                //系列：
+                        layout: 'force',
+                        symbolSize: 45,
+                        focusNodeAdjacency: true,
+                        roam: true,
+                        edgeSymbol: ['none', 'arrow'],
+                        categories: [{
+                            name: 'Bank',
+                            itemStyle: {
+                                normal: {
+                                    color: "#009800",
+                                }
+                            }
+                        }, {
+                            name: 'Serise',
+                            itemStyle: {
+                                normal: {
+                                    color: "#4592FF",
+                                }
+                            }
+                        }, {
+                            name: 'Instance',
+                            itemStyle: {
+                                normal: {
+                                    color: "#C71585",
+                                }
+                            }
+                        }],
+                        label: {
+                            normal: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: 12,
+                                },
+                            }
+                        },               //节点标签样式
+                        force: {
+                            repulsion: 1000
+                        },
+                        edgeSymbolSize: [4, 50],
+                        edgeLabel: {
+                            normal: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: 10
+                                },
+                                formatter: "{c}"
+                            }
+                        },           //边标签样式
+                        data: data,                 //节点
+                        links: links,               //节点间的关系
+                        lineStyle: {
+                            normal: {
+                                opacity: 0.9,
+                                width: 1.3,
+                                curveness: 0,
+                                color: "#262626"
+                            }
+                        }            // 连接线的风格
+                    }
+                ]
+            };
+            myChart.setOption(option);
+        </script>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,13 @@
+# 在以下环境执行无问题
+boto3
+tqdm
+regex
+pyhanlp
+pyahocorasick 1.4.2
+torch 1.10.0
+transformers 4.12.5
+sentence-transformers 2.0.0
+py2neo  2020.0.0
+django 3.2.7
+
+
