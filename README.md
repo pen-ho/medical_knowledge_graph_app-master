@@ -55,7 +55,7 @@
 
 * med_kg/Model 与neo4j图数据库交互的脚本
 
-* med_kg/MedModel 问答脚本
+* med_kg/MedModel 自动问答
   
   * med_kg/MedModel/question_classifier.py 意图识别脚本
 
