@@ -61,7 +61,7 @@ class QuestionPaser:
 
     def parser_main(self, res_classify, sent):
         args = res_classify['args']  # 问题提及的实体，用文本字符string:实体类型 包成一个字典
-        print('test---fun:parser_main,para--args', args)
+        # print('test---fun:parser_main,para--args', args)
         entity_dict = self.build_entitydict(args)  # {'symptom': ['气短', '烦热']}
         question_types = res_classify['question_types']  # 问题意图，是一个列表
         sqls = []

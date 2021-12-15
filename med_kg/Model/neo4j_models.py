@@ -213,10 +213,10 @@ class Neo4j_Handle():
         if len(res_sql) != 0:
             query_list = res_sql[0]['sql']  # 问题解释器 只能对应一个意图 todo 改
             query = query_list[0]
-            print('query', query)
+            # print('query', query)
             question_type = res_sql[0]['question_type']
             answer = self.graph.run(query).data()
-            print('answer', answer)
+            # print('answer', answer)
         else:
             # parser 解释不出来
             answer_dict['answer'] = [answer]

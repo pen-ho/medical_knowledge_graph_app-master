@@ -82,10 +82,10 @@ def entity_linking(inp_question, inp_question_type):
     return result
 
 # 测试
-print(entity_linking("眼睛干","symptom"))
-print(entity_linking("眼干涩","symptom"))
-print(entity_linking("眼睛干涩","symptom"))
-print(entity_linking("屁股痕痒","symptom"))
-print(entity_linking("喷嚏","symptom"))
-print(entity_linking("藿香正气液","drug"))
-print(entity_linking("鼻黏膜肿胀","symptom"))
+# print(entity_linking("眼睛干","symptom"))
+# print(entity_linking("眼干涩","symptom"))
+# print(entity_linking("眼睛干涩","symptom"))
+# print(entity_linking("屁股痕痒","symptom"))
+# print(entity_linking("喷嚏","symptom"))
+# print(entity_linking("藿香正气液","drug"))
+# print(entity_linking("鼻黏膜肿胀","symptom"))

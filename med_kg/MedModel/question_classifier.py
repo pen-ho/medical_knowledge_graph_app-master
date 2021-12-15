@@ -92,7 +92,7 @@ class QuestionClassifier:
         print(bert_ner_text, args.keys())
         # assert(len(bert_ner_text) == len(args.keys())),'bert识别出来的领域词数 不等于 基于词典分词得到的领域词数'
         if len(args.keys()) != 0:
-            print('args', args)
+            # print('args', args)
             segment_text = [k for k in args.keys()]
             segment_text_type = [k for k in args.values()][0]
         print('segment_text', segment_text, 'segment_text_type', segment_text_type)
@@ -117,7 +117,7 @@ class QuestionClassifier:
             for bert_ner_item in bert_ner_text:
                 el_result = el(bert_ner_item, bert_ner_text_type)  # 返回是dict {'鼻塞': ['symptom']}
                 el_result_dit[list(el_result.keys())[0]] = list(el_result.values())[0]
-        print('el_result_dit', el_result_dit)  # 返回完成实体链接的(症状/疾病/等)列表
+        # print('el_result_dit', el_result_dit)  # 返回完成实体链接的(症状/疾病/等)列表
         return el_result_dit
 
     '''分类主函数'''
@@ -132,10 +132,10 @@ class QuestionClassifier:
 
         data['args'] = el_result  # {'args': {'藿香正气水': ['drug']}}
 
-        print('func_classify_data', data)
+        # print('func_classify_data', data)
         # 收集问句当中所涉及到的实体类型 ['symptom','disease',...]
         types = []  # 记录涉及领域词的类型，是疾病还是症状还是药品，等实体类型。
-        print('debug-el_result', el_result)
+        print('res_el-entity', el_result)
         for type_ in el_result.values():
             types += type_
 
