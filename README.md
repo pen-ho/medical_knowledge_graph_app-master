@@ -174,13 +174,6 @@
 
 ![qa](./img/qa.png)
 
-## References
-
-1. https://github.com/liuhuanyong/QASystemOnMedicalKG
-2. https://github.com/lonePatient/BERT-NER-Pytorch
-3. https://github.com/UKPLab/sentence-transformers
-4. https://github.com/jiangnanboy/movie_knowledge_graph_app
-
 [^1]: https://github.com/liuhuanyong/QASystemOnMedicalKG
 [^2]: https://github.com/lonePatient/BERT-NER-Pytorch
 [^3]: https://github.com/UKPLab/sentence-transformers
