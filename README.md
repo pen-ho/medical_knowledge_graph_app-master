@@ -161,6 +161,10 @@ medical_knowledge_graph_app-master % python med_kg/manage.py runserver
 
 ## 三、前端界面
 
+### 1.KG
+
+![mention-detection](./img/neo4j.png)
+
 ### 1.提及识别
 
 ![mention-detection](./img/mention-detection.png)
