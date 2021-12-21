@@ -1,4 +1,6 @@
 # 在以下环境执行无问题
+python 3.6
+neo4j-community 4.1.4
 boto3
 tqdm
 regex
@@ -9,5 +11,3 @@ transformers 4.12.5
 sentence-transformers 2.0.0
 py2neo  2020.0.0
 django 3.2.7
-
-

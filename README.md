@@ -187,6 +187,13 @@ medical_knowledge_graph_app-master % python med_kg/manage.py runserver
 
 ![qa](./img/qa.png)
 
+## 四、其他
+出现这个bug:
+```
+RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.
+```
+参考：https://stackoverflow.com/questions/56369030/runtimeerror-attempting-to-deserialize-object-on-a-cuda-device
+
 [^1]: https://github.com/liuhuanyong/QASystemOnMedicalKG
 [^2]: https://github.com/lonePatient/BERT-NER-Pytorch
 [^3]: https://github.com/UKPLab/sentence-transformers

@@ -133,36 +133,36 @@ def rebuild_medkg_disease_symptom():
     pass
 
 
-def create_medical_add_symptomtxt(result_dict):
-    """
-    hzp 20210812
-    创建一个追加了疾病具体症状文本的json文件，在原来的文件medical.json基础上
-    # result_dict：输入字典{'disease':'symptomtxt'}
-    """
-    # import pandas as pd
-    # result = pd.read_json('../data/medical.json')
-    # print(result[:1]) ValueError: Trailing data
-    import json
-
-    # 拿到所有症状名
-
-    file_out = open('../data/medical_addsymptomtext.json', 'w', encoding='utf-8')
-    count = 0
-    for data in open('../data/medical.json'):
-        # if count > 10:
-        #     break
-        count += 1
-        print(count)
-        data_json = json.loads(data)  # json转字典
-        print(data_json['name'])
-        disease_name = data_json['name']
-        if disease_name in result_dict.keys():
-            symptom = result_dict[disease_name]
-            data_json['symptomtxt'] = symptomtxt
-        # print(data_json)
-        file_out.write(json.dumps(data_json, ensure_ascii=False) + '\n')  # 不加参数ensure_ascii会有乱码
-
-    file_out.close()
+# def create_medical_add_symptomtxt(result_dict):
+#     """
+#     hzp 20210812
+#     创建一个追加了疾病具体症状文本的json文件，在原来的文件medical.json基础上
+#     # result_dict：输入字典{'disease':'symptomtxt'}
+#     """
+#     # import pandas as pd
+#     # result = pd.read_json('../data/medical.json')
+#     # print(result[:1]) ValueError: Trailing data
+#     import json
+#
+#     # 拿到所有症状名
+#
+#     file_out = open('../data/medical_addsymptomtext.json', 'w', encoding='utf-8')
+#     count = 0
+#     for data in open('../data/medical.json'):
+#         # if count > 10:
+#         #     break
+#         count += 1
+#         print(count)
+#         data_json = json.loads(data)  # json转字典
+#         print(data_json['name'])
+#         disease_name = data_json['name']
+#         if disease_name in result_dict.keys():
+#             symptom = result_dict[disease_name]
+#             data_json['symptomtxt'] = symptomtxt
+#         # print(data_json)
+#         file_out.write(json.dumps(data_json, ensure_ascii=False) + '\n')  # 不加参数ensure_ascii会有乱码
+#
+#     file_out.close()
 
 
 # create_medical_add_symptomtxt(result_dict)
