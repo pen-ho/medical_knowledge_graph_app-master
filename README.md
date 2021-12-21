@@ -192,10 +192,12 @@ medical_knowledge_graph_app-master % python med_kg/manage.py runserver
 ```
 RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.
 ```
-参考：https://stackoverflow.com/questions/56369030/runtimeerror-attempting-to-deserialize-object-on-a-cuda-device
+参考[^5]，把./site-package/torch/serialization.py的load函数，用`def load(f, map_location='cpu', pickle_module=pickle, **pickle_load_args):`代替`def load(f, map_location=None, pickle_module=pickle, **pickle_load_args): `
+
 
 [^1]: https://github.com/liuhuanyong/QASystemOnMedicalKG
 [^2]: https://github.com/lonePatient/BERT-NER-Pytorch
 [^3]: https://github.com/UKPLab/sentence-transformers
 [^4]: https://github.com/jiangnanboy/movie_knowledge_graph_app
+[^5]: https://stackoverflow.com/questions/56369030/runtimeerror-attempting-to-deserialize-object-on-a-cuda-device
 
