@@ -167,9 +167,13 @@ medical_knowledge_graph_app-master % python med_kg/manage.py runserver
 
 ### 1.提及识别
 
+结合BERT和领域词典匹配两种方法得到query中的症状提及"鼻黏膜肿胀"。
+
 ![mention-detection](./img/mention-detection.png)
 
 ### 2.实体链接
+
+用SBERT句对匹配得到症状提及"鼻黏膜肿胀"的目标实体"鼻粘膜肿胀"。
 
 ![entity-linking](./img/entity-linking.png)
 
@@ -184,6 +188,8 @@ medical_knowledge_graph_app-master % python med_kg/manage.py runserver
 ![search_relation_2](./img/search_relation_2.png)
 
 ### 5.问答（支持识别多个实体和实体链接的问答）
+
+识别出问句中的一个或多个提及词，链接到对应的一个或多个kg实体，结合意图识别的结果返回query答案。
 
 ![qa](./img/qa.png)
 
